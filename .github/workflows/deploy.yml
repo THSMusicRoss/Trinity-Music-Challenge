@@ -30,8 +30,10 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+        run: |
+          rm -f package-lock.json
+          npm install --registry=https://registry.npmjs.org
 
       - name: Validate question bank
         run: npm run validate:questions
