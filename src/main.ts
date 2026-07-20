@@ -111,7 +111,7 @@ class TrinityMusicChallengeApp {
 
   private async loadQuestionBank(): Promise<void> {
     try {
-      const { pack, validation } = await this.questionLoader.load("/data/questions.json");
+      const { pack, validation } = await this.questionLoader.load(import.meta.env.BASE_URL + "/data/questions.json");
       this.questions = pack.questions;
       this.setupWizard.setQuestionBank(this.questions);
       this.gameplay.setQuestionBank(this.questions);
