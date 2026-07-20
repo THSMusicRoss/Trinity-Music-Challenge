@@ -1,0 +1,55 @@
+$ npm install
+
+added 15 packages, and audited 16 packages in 1s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+
+$ npm run typecheck
+
+> trinity-music-challenge@1.0.0 typecheck
+> tsc --noEmit
+
+
+
+$ npm run validate:questions
+
+> trinity-music-challenge@1.0.0 validate:questions
+> node scripts/validate-question-bank.mjs
+
+{
+  "questions": 500,
+  "errors": 0,
+  "warnings": 11,
+  "warningDetails": [
+    "Duplicate text: Q0021, Q0214",
+    "Duplicate text: Q0026, Q0201",
+    "Duplicate text: Q0028, Q0478",
+    "Duplicate text: Q0051, Q0226",
+    "Duplicate text: Q0060, Q0235, Q0485",
+    "Duplicate text: Q0113, Q0436",
+    "Duplicate text: Q0129, Q0479",
+    "Duplicate text: Q0161, Q0486",
+    "Duplicate text: Q0244, Q0494",
+    "Duplicate text: Q0343, Q0493",
+    "Duplicate text: Q0344, Q0482"
+  ]
+}
+
+
+$ npm run build
+
+> trinity-music-challenge@1.0.0 build
+> tsc && vite build
+
+[36mvite v7.3.6 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 37 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                [39m[1m[2m11.27 kB[22m[1m[22m[2m │ gzip:  2.62 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-Cmpw-N6N.js  [39m[1m[2m69.96 kB[22m[1m[22m[2m │ gzip: 18.58 kB[22m
+[32m✓ built in 306ms[39m

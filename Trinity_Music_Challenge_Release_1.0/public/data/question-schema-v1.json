@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Trinity Music Challenge Question Pack",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "pack",
+    "questions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "pack": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "version",
+        "questionCount",
+        "status"
+      ]
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "packId",
+          "type",
+          "category",
+          "difficulty",
+          "question",
+          "choices",
+          "correctAnswer",
+          "acceptedAnswers",
+          "explanation",
+          "media",
+          "tags",
+          "status"
+        ]
+      }
+    }
+  }
+}

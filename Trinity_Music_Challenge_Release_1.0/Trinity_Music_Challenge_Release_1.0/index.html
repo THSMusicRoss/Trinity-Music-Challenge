@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Trinity Music Challenge</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/themes.css" />
+</head>
+<body>
+    <a class="skip-link" href="#app-main">Skip to game content</a>
+    <div id="global-live-region" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="app" class="app-shell">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">TMC</div>
+        <div>
+          <p class="eyebrow">Trinity High School</p>
+          <h1>Trinity Music Challenge</h1>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="theme-toggle" class="button button-secondary" type="button">
+          Light Theme
+        </button>
+        <button id="fullscreen-toggle" class="button button-secondary" type="button">
+          Presentation Mode
+        </button>
+      </div>
+    </header>
+
+    <main id="app-main" id="main-content" class="main-content" tabindex="-1">
+      <section id="screen-main-menu" class="screen screen-active" aria-labelledby="main-menu-title">
+        <div class="hero-card">
+          <p class="eyebrow">Classroom Game Show</p>
+          <h2 id="main-menu-title">Ready to play?</h2>
+          <p class="hero-copy">
+            Launch a fast, teacher-led music trivia game built for clear classroom projection.
+          </p>
+
+          <div class="menu-actions">
+            <button class="button button-primary button-large" type="button" data-action="new-game">
+              New Game
+            </button>
+            <button id="resume-game-button" class="button button-secondary button-large" type="button" data-action="resume-game" disabled>
+              Resume Game
+            </button>
+            <p id="resume-game-details" class="resume-game-details" hidden></p>
+            <button class="button button-secondary button-large" type="button" data-action="presets">
+              Session Presets
+            </button>
+            <button class="button button-secondary button-large" type="button" data-action="settings">
+              Settings
+            </button>
+          </div>
+        </div>
+
+        <aside class="status-card" aria-labelledby="status-title">
+          <h2 id="status-title">System Status</h2>
+          <dl class="status-list">
+            <div>
+              <dt>Application</dt>
+              <dd id="app-version">Loading…</dd>
+            </div>
+            <div>
+              <dt>Game State</dt>
+              <dd id="game-state">BOOT</dd>
+            </div>
+            <div>
+              <dt>Theme</dt>
+              <dd id="theme-status">Dark Classroom</dd>
+            </div>
+            <div>
+              <dt>Question Bank</dt>
+              <dd id="question-bank-status">Loading…</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section id="screen-setup" class="screen" aria-labelledby="setup-title">
+        <div class="setup-shell">
+          <div class="setup-header">
+            <div>
+              <p class="eyebrow">New Game</p>
+              <h2 id="setup-title">Game Setup</h2>
+              <p id="setup-step-label">Step 1 of 5</p>
+            </div>
+            <button id="setup-cancel" class="button button-secondary" type="button">Cancel Setup</button>
+          </div>
+          <div class="progress-track" aria-hidden="true"><span id="setup-progress"></span></div>
+          <div id="setup-content" class="setup-content"></div>
+          <div class="setup-navigation">
+            <button id="setup-back" class="button button-secondary" type="button">Back</button>
+            <button id="setup-next" class="button button-primary" type="button">Continue</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-presets" class="screen" aria-labelledby="presets-title">
+        <div class="setup-shell">
+          <div class="setup-header">
+            <div><p class="eyebrow">Saved Configurations</p><h2 id="presets-title">Session Presets</h2></div>
+            <button class="button button-secondary" type="button" data-action="main-menu">Main Menu</button>
+          </div>
+          <div id="preset-list" class="preset-list"></div>
+        </div>
+      </section>
+
+      <section id="screen-gameplay" class="screen gameplay-screen" aria-labelledby="game-question-text">
+        <header class="gameplay-header">
+          <div class="gameplay-meta">
+            <span id="game-question-number">Question 1 of 20</span>
+            <span id="game-category">Category</span>
+            <span id="game-difficulty" class="difficulty-badge">Difficulty</span>
+          </div>
+          <div id="game-timer" class="game-timer" aria-label="Time remaining">20</div>
+        </header>
+
+        <div class="gameplay-body">
+          <aside class="teacher-panel" aria-label="Teacher controls">
+            <div class="teacher-panel-top">
+              <h2>Teacher Controls</h2>
+              <button id="game-pause" class="button button-secondary" type="button" data-game-action="pause">Pause</button>
+            </div>
+            <details class="shortcut-help">
+              <summary>Keyboard shortcuts</summary>
+              <p><kbd>1–6</kbd> buzz • <kbd>Space</kbd> reveal • <kbd>N</kbd> next • <kbd>P</kbd> pause • <kbd>S</kbd> skip • <kbd>B</kbd> reset buzzers</p>
+            </details>
+            <div id="game-teacher-controls"></div>
+            <div class="teacher-button-row persistent-controls">
+              <button id="game-reveal" class="button button-secondary" type="button" data-game-action="reveal">Reveal Answer</button>
+              <button class="button button-secondary" type="button" data-game-action="skip">Skip</button>
+              <button id="game-next" class="button button-primary" type="button" data-game-action="next" hidden>Next Question</button>
+            </div>
+          </aside>
+
+          <article class="question-stage">
+            <div id="game-status-banner" class="game-status-banner" hidden></div>
+            <h2 id="game-question-text">Question text</h2>
+            <div id="game-answer-area" class="game-answer-area"></div>
+            <div id="game-explanation" class="game-explanation" hidden></div>
+          </article>
+        </div>
+
+        <div id="game-team-controls" class="game-team-controls" hidden></div>
+        <footer id="game-scoreboard" class="game-scoreboard" aria-label="Team scoreboard"></footer>
+      </section>
+
+
+      <section id="screen-settings" class="screen" aria-labelledby="settings-title">
+        <div class="setup-shell">
+          <div class="setup-header">
+            <div>
+              <p class="eyebrow">Browser Preferences</p>
+              <h2 id="settings-title">Settings</h2>
+              <p>These defaults are restored automatically on this browser.</p>
+            </div>
+            <button class="button button-secondary" type="button" data-action="main-menu">Main Menu</button>
+          </div>
+          <form id="settings-form" class="setup-content">
+            <div class="settings-grid">
+              <fieldset class="setup-fieldset">
+                <legend>Appearance</legend>
+                <label>Default theme
+                  <select id="settings-theme">
+                    <option value="dark">Dark Classroom</option>
+                    <option value="light">Light Classroom</option>
+                  </select>
+                </label>
+              </fieldset>
+              <fieldset class="setup-fieldset">
+                <legend>New Game Defaults</legend>
+                <div class="form-grid">
+                  <label>Answer method
+                    <select id="settings-default-mode">
+                      <option value="manual">Manual Classroom Mode</option>
+                      <option value="buzzer">Built-in Buzzers</option>
+                    </select>
+                  </label>
+                  <label>Question count
+                    <select id="settings-default-question-count">
+                      <option value="10">10</option><option value="15">15</option>
+                      <option value="20">20</option><option value="25">25</option>
+                      <option value="30">30</option><option value="40">40</option>
+                      <option value="50">50</option>
+                    </select>
+                  </label>
+                  <label class="toggle-row">
+                    <input id="settings-default-timer" type="checkbox">
+                    <span>Use timer by default</span>
+                  </label>
+                  <label>Default timer length
+                    <select id="settings-default-timer-length">
+                      <option value="10">10 seconds</option><option value="15">15 seconds</option>
+                      <option value="20">20 seconds</option><option value="30">30 seconds</option>
+                      <option value="45">45 seconds</option><option value="60">60 seconds</option>
+                    </select>
+                  </label>
+                  <label class="toggle-row">
+                    <input id="settings-default-sound" type="checkbox">
+                    <span>Use sound effects by default</span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="settings-actions">
+              <button class="button button-primary" type="submit">Save Settings</button>
+              <span id="settings-save-status" role="status"></span>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="screen-placeholder" class="screen" aria-live="polite">
+        <div class="placeholder-card">
+          <p class="eyebrow">Core Engine</p>
+          <h2 id="placeholder-title">Screen Placeholder</h2>
+          <p id="placeholder-message"></p>
+          <button class="button button-primary" type="button" data-action="main-menu">
+            Return to Main Menu
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Teacher-first classroom interface</span>
+      <span id="footer-status" role="status">Application initialized.</span>
+    </footer>
+  </div>
+
+  <noscript>
+    <div class="noscript-message">
+      Trinity Music Challenge requires JavaScript to run.
+    </div>
+  </noscript>
+
+  <script type="module" src="/src/main.ts"></script>
+
+    <dialog id="confirm-dialog" class="confirm-dialog" aria-labelledby="confirm-dialog-title">
+      <form method="dialog">
+        <h2 id="confirm-dialog-title">Confirm</h2>
+        <p id="confirm-dialog-message"></p>
+        <div class="confirm-dialog-actions">
+          <button id="confirm-dialog-cancel" class="button button-secondary" type="button">Cancel</button>
+          <button id="confirm-dialog-confirm" class="button button-danger" type="button">Continue</button>
+        </div>
+      </form>
+    </dialog>
+
+  </body>
+</html>

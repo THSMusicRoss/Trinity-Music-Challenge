@@ -1,0 +1,22 @@
+html[data-theme="dark"] {
+  --color-background: #101317;
+  --color-panel: #181d23;
+  --color-panel-strong: #222932;
+  --color-border: #353e49;
+  --color-text: #f5f7fa;
+  --color-text-muted: #b8c0ca;
+  --color-accent: #d7b24a;
+  --color-accent-text: #17130a;
+  --color-focus: #7fc7ff;
+}
+html[data-theme="light"] {
+  --color-background: #eef1f4;
+  --color-panel: #ffffff;
+  --color-panel-strong: #f5f7f9;
+  --color-border: #cdd4dc;
+  --color-text: #18202a;
+  --color-text-muted: #596574;
+  --color-accent: #8a6700;
+  --color-accent-text: #ffffff;
+  --color-focus: #005fcc;
+}
